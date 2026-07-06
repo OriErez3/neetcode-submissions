@@ -1,0 +1,11 @@
+class Solution:
+    def candy(self, ratings: List[int]) -> int:
+        ret = [1]*len(ratings)
+        for i in range(1,len(ratings)):
+            if ratings[i-1] < ratings[i]:
+                ret[i] += ret[i-1]
+        for i in range(len(ratings)-2,-1,-1):
+            if ratings[i] > ratings[i+1]:
+                ret[i] = max(ret[i],ret[i+1]+1)
+        return sum(ret)
+        
